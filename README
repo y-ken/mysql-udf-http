@@ -1,0 +1,40 @@
+MySQL User-defined function (UDF) for HTTP GET/POST
+
+Website: http://code.google.com/p/mysql-udf-http
+
+====1. Install:====
+
+ulimit -SHn 65535
+
+wget http://mysql-udf-http.googlecode.com/files/mysql-udf-http-1.0.tar.gz
+tar zxvf mysql-udf-http-1.0.tar.gz
+cd mysql-udf-http-1.0/
+./configure --prefix=/usr/local/webserver/mysql --with-mysql=/usr/local/webserver/mysql/bin/mysql_config
+make && make install
+
+====2. Enter to the MySQL console:====
+
+/usr/local/webserver/mysql/bin/mysql -S /tmp/mysql.sock
+
+====3. Create the UDF function in the MySQL console:====
+
+mysql>
+
+create function http_get returns string soname 'mysql-udf-http.so';
+create function http_post returns string soname 'mysql-udf-http.so';
+
+====4. Usage:====
+
+mysql>
+
+select http_get('http://m.baidu.com/s?word=xoyo&pn=0');
+select http_post('http://m.baidu.com/s','word=xoyo&pn=0');
+
+====5. How to drop the UDF function:====
+
+mysql>
+
+drop function http_get;
+drop function http_post;
+
+
