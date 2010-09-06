@@ -22,13 +22,32 @@ mysql>
 
 create function http_get returns string soname 'mysql-udf-http.so';
 create function http_post returns string soname 'mysql-udf-http.so';
+create function http_put returns string soname 'mysql-udf-http.so';
+create function http_delete returns string soname 'mysql-udf-http.so';
 
 ====4. Usage:====
 
+(1). Description:
+
 mysql>
 
-select http_get('http://m.baidu.com/s?word=xoyo&pn=0');
-select http_post('http://m.baidu.com/s','word=xoyo&pn=0');
+SELECT http_get('<url>');
+SELECT http_post('<url>', '<data>');
+SELECT http_put('<url>', '<data>');
+SELECT http_delete('<url>');
+
+(2). Examples:
+
+mysql>
+
+/* Sina Weibo Open Platform */
+SELECT http_get('http://api.t.sina.com.cn/statuses/user_timeline/103500.json?count=1&source=1561596835') AS data;
+SELECT http_post('http://your_sina_uid:your_password@api.t.sina.com.cn/statuses/update.xml?source=1561596835', 'status=Thins is sina weibo test information');
+
+/* Tokyo Tyrant */
+SELECT http_put('http://192.168.8.34:1978/key', 'This is value');
+SELECT http_get('http://192.168.8.34:1978/key');
+SELECT http_delete('http://192.168.8.34:1978/key');
 
 ====5. How to drop the UDF function:====
 
@@ -36,5 +55,6 @@ mysql>
 
 drop function http_get;
 drop function http_post;
-
+drop function http_put;
+drop function http_delete;
 
