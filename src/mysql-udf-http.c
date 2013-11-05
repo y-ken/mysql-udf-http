@@ -112,7 +112,8 @@ void http_get_deinit(UDF_INIT *initid)
   /* if we allocated initid->ptr, free it here */
   st_curl_results *res= (st_curl_results *)initid->ptr;
 
-  free(res->result);
+  if (res->result)
+        free(res->result);
   free(res);
   return;
 }
@@ -186,7 +187,8 @@ void http_post_deinit(UDF_INIT *initid)
   /* if we allocated initid->ptr, free it here */
   st_curl_results *res= (st_curl_results *)initid->ptr;
 
-  free(res->result);
+  if (res->result)
+    free(res->result);
   free(res);
   return;
 }
@@ -261,7 +263,8 @@ void http_put_deinit(UDF_INIT *initid)
   /* if we allocated initid->ptr, free it here */
   st_curl_results *res= (st_curl_results *)initid->ptr;
 
-  free(res->result);
+  if (res->result)
+    free(res->result);
   free(res);
   return;
 }
@@ -331,7 +334,8 @@ void http_delete_deinit(UDF_INIT *initid)
   /* if we allocated initid->ptr, free it here */
   st_curl_results *res= (st_curl_results *)initid->ptr;
 
-  free(res->result);
+  if (res->result)
+    free(res->result);
   free(res);
   return;
 }
