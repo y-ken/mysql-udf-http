@@ -97,14 +97,10 @@ char *http_get(UDF_INIT *initid, UDF_ARGS *args,
     retref= curl_easy_perform(curl);
     if (retref) {
       fprintf(stderr, "error\n");
-      strcpy(res->result,"");
-      *length= 0;
+      if (res->result) 
+        strcpy(res->result,"");
+      res->size = 0;
     }
-  }
-  else
-  {
-    strcpy(res->result,"");
-    *length= 0;
   }
   curl_easy_cleanup(curl);
   *length= res->size;
@@ -116,7 +112,8 @@ void http_get_deinit(UDF_INIT *initid)
   /* if we allocated initid->ptr, free it here */
   st_curl_results *res= (st_curl_results *)initid->ptr;
 
-  free(res->result);
+  if (res->result)
+        free(res->result);
   free(res);
   return;
 }
@@ -175,14 +172,10 @@ char *http_post(UDF_INIT *initid, UDF_ARGS *args,
     retref= curl_easy_perform(curl);
     if (retref) {
       fprintf(stderr, "error\n");
-      strcpy(res->result,"");
-      *length= 0;
+      if (res->result)
+        strcpy(res->result,"");
+      res->size = 0;
     }
-  }
-  else
-  {
-    strcpy(res->result,"");
-    *length= 0;
   }
   curl_easy_cleanup(curl);
   *length= res->size;
@@ -194,7 +187,8 @@ void http_post_deinit(UDF_INIT *initid)
   /* if we allocated initid->ptr, free it here */
   st_curl_results *res= (st_curl_results *)initid->ptr;
 
-  free(res->result);
+  if (res->result)
+    free(res->result);
   free(res);
   return;
 }
@@ -254,14 +248,10 @@ char *http_put(UDF_INIT *initid, UDF_ARGS *args,
     retref= curl_easy_perform(curl);
     if (retref) {
       fprintf(stderr, "error\n");
-      strcpy(res->result,"");
-      *length= 0;
+      if (res->result)
+        strcpy(res->result,"");
+      res->size = 0;
     }
-  }
-  else
-  {
-    strcpy(res->result,"");
-    *length= 0;
   }
   curl_easy_cleanup(curl);
   *length= res->size;
@@ -273,7 +263,8 @@ void http_put_deinit(UDF_INIT *initid)
   /* if we allocated initid->ptr, free it here */
   st_curl_results *res= (st_curl_results *)initid->ptr;
 
-  free(res->result);
+  if (res->result)
+    free(res->result);
   free(res);
   return;
 }
@@ -328,14 +319,10 @@ char *http_delete(UDF_INIT *initid, UDF_ARGS *args,
     retref= curl_easy_perform(curl);
     if (retref) {
       fprintf(stderr, "error\n");
-      strcpy(res->result,"");
-      *length= 0;
+      if (res->result)
+        strcpy(res->result,"");
+      res->size = 0;
     }
-  }
-  else
-  {
-    strcpy(res->result,"");
-    *length= 0;
   }
   curl_easy_cleanup(curl);
   *length= res->size;
@@ -347,7 +334,8 @@ void http_delete_deinit(UDF_INIT *initid)
   /* if we allocated initid->ptr, free it here */
   st_curl_results *res= (st_curl_results *)initid->ptr;
 
-  free(res->result);
+  if (res->result)
+    free(res->result);
   free(res);
   return;
 }
