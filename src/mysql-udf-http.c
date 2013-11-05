@@ -97,9 +97,9 @@ char *http_get(UDF_INIT *initid, UDF_ARGS *args,
     retref= curl_easy_perform(curl);
     if (retref) {
       fprintf(stderr, "error\n");
-      *length= 0;
       if (res->result) 
         strcpy(res->result,"");
+      res->size = 0;
     }
   }
   else
@@ -176,9 +176,9 @@ char *http_post(UDF_INIT *initid, UDF_ARGS *args,
     retref= curl_easy_perform(curl);
     if (retref) {
       fprintf(stderr, "error\n");
-      *length= 0;
       if (res->result)
         strcpy(res->result,"");
+      res->size = 0;
     }
   }
   else
@@ -256,9 +256,9 @@ char *http_put(UDF_INIT *initid, UDF_ARGS *args,
     retref= curl_easy_perform(curl);
     if (retref) {
       fprintf(stderr, "error\n");
-      *length= 0;
       if (res->result)
         strcpy(res->result,"");
+      res->size = 0;
     }
   }
   else
@@ -331,9 +331,9 @@ char *http_delete(UDF_INIT *initid, UDF_ARGS *args,
     retref= curl_easy_perform(curl);
     if (retref) {
       fprintf(stderr, "error\n");
-      *length= 0;
       if (res->result)
         strcpy(res->result,"");
+      res->size = 0;
     }
   }
   else
