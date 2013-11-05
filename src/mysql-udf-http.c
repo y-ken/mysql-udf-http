@@ -102,11 +102,6 @@ char *http_get(UDF_INIT *initid, UDF_ARGS *args,
       res->size = 0;
     }
   }
-  else
-  {
-    strcpy(res->result,"");
-    *length= 0;
-  }
   curl_easy_cleanup(curl);
   *length= res->size;
   return ((char *) res->result);
@@ -180,11 +175,6 @@ char *http_post(UDF_INIT *initid, UDF_ARGS *args,
         strcpy(res->result,"");
       res->size = 0;
     }
-  }
-  else
-  {
-    strcpy(res->result,"");
-    *length= 0;
   }
   curl_easy_cleanup(curl);
   *length= res->size;
@@ -261,11 +251,6 @@ char *http_put(UDF_INIT *initid, UDF_ARGS *args,
       res->size = 0;
     }
   }
-  else
-  {
-    strcpy(res->result,"");
-    *length= 0;
-  }
   curl_easy_cleanup(curl);
   *length= res->size;
   return ((char *) res->result);
@@ -335,11 +320,6 @@ char *http_delete(UDF_INIT *initid, UDF_ARGS *args,
         strcpy(res->result,"");
       res->size = 0;
     }
-  }
-  else
-  {
-    strcpy(res->result,"");
-    *length= 0;
   }
   curl_easy_cleanup(curl);
   *length= res->size;
